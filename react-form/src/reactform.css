@@ -1,0 +1,91 @@
+body {
+    background: #fafafa;
+}
+
+div#root {
+    display: flex;
+    justify-content: center;
+}
+
+div.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    width: 500px;
+    padding: 50px;
+}
+
+input {
+    width: 350px;
+    height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid #e4e3e3;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+input:focus {
+    border: none !important;
+    outline: none;
+}
+
+
+
+button {
+    transition: 0.1s linear;
+    -webkit-transition: 0.1s linear;
+    margin-left: 10px;
+    width: 130px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: translate3d(0, -2px, 0);
+    -webkit-transform: translate3d(0, -2px, 0);
+}
+
+button.btn.btn-primary.float-right {
+    border: 1px solid #4a90e2;
+    background: #4a90e2;
+    color: #fff;
+}
+
+button.btn.btn-success.btn-block {
+    border: 1px solid #31639c;
+    background: #31639c;
+    color: #fff; 
+}
+
+button.btn.btn-success.btn-block:hover{
+    border: 1px solid #31639cc2;
+    background: #31639cc2;
+}
+
+button.btn.btn-primary.float-right:hover {
+    background: #609de6;
+}
+
+button.btn.btn-secondary {
+    border: 1px solid #e4dfdf;
+    background: #fafafa;
+    color: #252525;
+}
+
+button.btn.btn-secondary:hover {
+    border-color: #252525;
+}
+
+button.btn.btn-primary.float-right:focus,
+button.btn.btn-secondary:focus {
+    outline: none !important;
+}
+
+.btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+}
