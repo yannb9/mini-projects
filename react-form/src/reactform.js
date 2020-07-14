@@ -9,7 +9,6 @@ class Step1 extends React.Component {
             handleNextBtn,
             errors
         } = this.props;
-        // console.log(this.props)
         if (currentStep !== 1) {
             return null
         }
@@ -269,7 +268,6 @@ class Form extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         const {
             currentStep,
             firstname,
