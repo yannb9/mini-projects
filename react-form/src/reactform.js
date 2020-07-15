@@ -238,18 +238,19 @@ class Form extends React.Component {
             this.setState({errors});
             return;
         } else {
-            currentStep = currentStep >= 2
-                ? 3
-                : currentStep + 1
+            currentStep = currentStep >= 2 ? 3 : currentStep + 1;
+            var step = document.querySelector(`.step[step="${currentStep}"]`);
+            step.classList.add('active-step');
+            console.log(step)
             this.setState({isNext: true, currentStep: currentStep});
         }
     };
 
     prevBtnHandler = () => {
-        let currentStep = this.state.currentStep
-        currentStep = currentStep <= 1
-            ? 1
-            : currentStep - 1
+        let currentStep = this.state.currentStep;
+        var step = document.querySelector(`.step[step="${currentStep}"]`);
+        step.classList.remove('active-step');
+        currentStep = currentStep <= 1 ? 1 : currentStep - 1;
         this.setState({currentStep: currentStep})
     }
 
@@ -265,6 +266,10 @@ class Form extends React.Component {
                 isSubmit: !this.state.isSubmit
             });
         }
+    }
+
+    componentDidUpdate() {
+        // this.activateStepState();
     }
 
     render() {
@@ -283,7 +288,13 @@ class Form extends React.Component {
         return (
             <React.Fragment>
                 <div className="form-wrapper">
-                    <div className="steps"></div>
+                    <div className="steps">
+                        <div step="1" className="step active-step"><span>1</span></div>
+                        <div className="hr"></div>
+                        <div step="2" className="step"><span>2</span></div>
+                        <div className="hr"></div>
+                        <div step="3" className="step"><span>3</span></div>
+                    </div>
                     <form onSubmit={this.handleSubmit}>
 
                         <Step1
