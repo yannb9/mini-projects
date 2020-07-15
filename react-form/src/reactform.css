@@ -20,10 +20,13 @@ div.form-wrapper {
     padding: 50px;
 }
 
+.input-box {
+    margin-bottom: 20px;
+}
+
 input {
     width: 350px;
     height: 50px;
-    margin-bottom: 20px;
     border: 1px solid #e4e3e3;
     border-radius: 5px;
     padding: 10px;
@@ -34,7 +37,10 @@ input:focus {
     outline: none;
 }
 
-
+.err-msg {
+    margin: 0;
+    color: brown;
+}
 
 button {
     transition: 0.1s linear;
