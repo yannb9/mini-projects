@@ -166,6 +166,24 @@ class Step3 extends React.Component {
     }
 }
 
+class SuccessModal extends React.Component {
+    render() {
+        const {isSubmit} = this.props;
+        if (!isSubmit) {
+            return null
+        }
+        return (
+            <div className="modal-instance">
+                <div className="modal-container">
+                    <div className="modal-content--box">
+                        <h3>Success!</h3>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
 class Form extends React.Component {
     state = {
         currentStep: 1,
@@ -184,10 +202,23 @@ class Form extends React.Component {
 
     validateStep1(firstname, lastname, title) {
         const errors = [];
-        if (firstname.length === 0 || lastname.length === 0 || title.length === 0) {
-            errors.push("Field can't be empty");
-        } else if (!firstname.match(/^[a-zA-Z\s]*$/) || !lastname.match(/^[a-zA-Z\s]*$/)) {
-            errors.push("Field should only contain letters");
+        if (firstname.length === 0) {
+            errors.push("First Name can't be empty");
+        } 
+        if (lastname.length === 0) {
+            errors.push("Last Name can't be empty");
+        }
+
+        if (title.length === 0) {
+            errors.push("Title can't be empty");
+        }
+        
+        if (!firstname.match(/^[a-zA-Z\s]*$/)) {
+            errors.push("First Name should only contain letters");
+        }
+
+        if (!lastname.match(/^[a-zA-Z\s]*$/)) {
+            errors.push("Last Name should only contain letters");
         }
         return errors;
     }
@@ -195,9 +226,9 @@ class Form extends React.Component {
     validateStep2(country) {
         const errors = [];
         if (country.length === 0) {
-            errors.push("Field can't be empty");
+            errors.push("Country can't be empty");
         } else if (!country.match(/^[a-zA-Z\s]*$/)) {
-            errors.push("Field should only contain letters");
+            errors.push("Country should only contain letters");
         }
         return errors;
     }
@@ -256,6 +287,7 @@ class Form extends React.Component {
 
     _submitBtnHandler = e => {
         e.preventDefault();
+        let currentStep = this.state.currentStep;
         const {email, phone} = this.state;
         const errors = this.validateStep3(email, phone);
         if (errors.length > 0) {
@@ -263,6 +295,7 @@ class Form extends React.Component {
             return;
         } else {
             this.setState({
+                currentStep: 4,
                 isSubmit: !this.state.isSubmit
             });
         }
@@ -283,18 +316,25 @@ class Form extends React.Component {
             street,
             email,
             phone,
+            isSubmit,
             errors
         } = this.state;
         return (
             <React.Fragment>
-                <div className="form-wrapper">
-                    <div className="steps">
-                        <div step="1" className="step active-step"><span>1</span></div>
-                        <div className="hr"></div>
-                        <div step="2" className="step"><span>2</span></div>
-                        <div className="hr"></div>
-                        <div step="3" className="step"><span>3</span></div>
-                    </div>
+                <SuccessModal 
+                    isSubmit={isSubmit}
+                />
+                    <div className="form-wrapper">
+                    {!isSubmit &&
+                        <div className="steps">
+                            <div step="1" className="step active-step"><span>1</span></div>
+                            <div className="hr"></div>
+                            <div step="2" className="step"><span>2</span></div>
+                            <div className="hr"></div>
+                            <div step="3" className="step"><span>3</span></div>
+                        </div>
+                    
+                    }
                     <form onSubmit={this.handleSubmit}>
 
                         <Step1
