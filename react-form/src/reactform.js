@@ -272,7 +272,6 @@ class Form extends React.Component {
             currentStep = currentStep >= 2 ? 3 : currentStep + 1;
             var step = document.querySelector(`.step[step="${currentStep}"]`);
             step.classList.add('active-step');
-            console.log(step)
             this.setState({isNext: true, currentStep: currentStep});
         }
     };
