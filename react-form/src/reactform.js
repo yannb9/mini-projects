@@ -123,6 +123,8 @@ class Step3 extends React.Component {
             currentStep,
             email,
             phone,
+            optin,
+            handleCheckbox,
             handleUserInput,
             handleSubmit,
             handlePrevBtn,
@@ -153,6 +155,15 @@ class Step3 extends React.Component {
                         value={phone}
                         onChange={event => handleUserInput(event)}/>
                 </div>
+                <div className="input-box">
+                    <input
+                        className="form-control optin"
+                        id="optin"
+                        name="optin"
+                        type="checkbox"
+                        value={optin}
+                        onChange={handleCheckbox}/>
+                </div>
                 <div className="btns">
                     <button className="btn btn-secondary" type="button" onClick={handlePrevBtn}>Prev</button>
                     <button
@@ -168,7 +179,7 @@ class Step3 extends React.Component {
 
 class SuccessModal extends React.Component {
     render() {
-        const {firstname, lastname, title, country, street, city, email, phone, isSubmit} = this.props;
+        const {firstname, lastname, title, country, street, city, email, phone,optin, isSubmit} = this.props;
         if (!isSubmit) {
             return null
         }
@@ -201,6 +212,7 @@ class Form extends React.Component {
         street: '',
         email: '',
         phone: '',
+        optin: false,
         isNext: false,
         isSubmit: false,
         errors: []
@@ -302,19 +314,23 @@ class Form extends React.Component {
             this.setState({
                 currentStep: 4,
                 isSubmit: !this.state.isSubmit
+            },()=>{
+                fetch('/api', {
+                    method: 'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify(this.state)
+                }).then(res=>{
+                    if(res.ok){
+                        return res.json();
+                    }
+                })
+                .then(res=>console.log(res))
             });
-            fetch('/api', {
-                method: 'POST',
-                headers:{'Content-Type':'application/json'},
-                body:JSON.stringify(this.state)
-            }).then(res=>{
-                if(res.ok){
-                    console.log(res.status);
-                    return res.json();
-                }
-            })
-            .then(res=>console.log(res))
         }
+    }
+
+    handleCheckbox = e =>{
+        this.setState({optin: e.target.optin})
     }
 
     render() {
@@ -328,6 +344,7 @@ class Form extends React.Component {
             street,
             email,
             phone,
+            optin,
             isSubmit,
             errors
         } = this.state;
@@ -380,6 +397,8 @@ class Form extends React.Component {
                             currentStep={currentStep}
                             email={email}
                             phone={phone}
+                            optin={optin}
+                            handleCheckbox={this.handleCheckbox}
                             handleUserInput={this.handleUserInput}
                             handleSubmit={this._submitBtnHandler}
                             handlePrevBtn={this.prevBtnHandler}
