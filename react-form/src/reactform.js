@@ -168,7 +168,7 @@ class Step3 extends React.Component {
 
 class SuccessModal extends React.Component {
     render() {
-        const {isSubmit} = this.props;
+        const {firstname, lastname, title, country, street, city, email, phone, isSubmit} = this.props;
         if (!isSubmit) {
             return null
         }
@@ -177,6 +177,12 @@ class SuccessModal extends React.Component {
                 <div className="modal-container">
                     <div className="modal-content--box">
                         <h3>Success!</h3>
+                        <div><p><strong>First Name: </strong>{this.props.firstname}</p></div>
+                        <div><p><strong>Last Name: </strong>{this.props.lastname}</p></div>
+                        <div><p><strong>Title: </strong>{this.props.country}</p></div>
+                        <div><p><strong>Location: </strong>{this.props.street}, {this.props.city} - {this.props.country}</p></div>
+                        <div><p><strong>Email: </strong>{this.props.email}</p></div>
+                        <div><p><strong>Phone: </strong>{this.props.phone}</p></div>
                     </div>
                 </div>
             </div>
@@ -333,6 +339,14 @@ class Form extends React.Component {
         return (
             <React.Fragment>
                 <SuccessModal 
+                    firstname={firstname}
+                    lastname={lastname}
+                    title={title}
+                    country={country}
+                    city={city}
+                    street={street}
+                    email={email}
+                    phone={phone}
                     isSubmit={isSubmit}
                 />
                     <div className="form-wrapper">
