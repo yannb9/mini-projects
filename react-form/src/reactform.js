@@ -309,11 +309,12 @@ class Form extends React.Component {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(this.state.firstname),
+                body: JSON.stringify(this.state),
             })
-            .then(res=>console.log(res.status))
-            .then(res=>{return res.json()})
-            .then(data => console.log(data))
+            .then(res=>res.json())
+            // .then(res=>console.log(res.status))
+            // .then(res=>{return res.json()})
+            // .then(data => console.log(data))
 
         }
     }
