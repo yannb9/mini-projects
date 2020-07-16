@@ -293,6 +293,11 @@ class Form extends React.Component {
             this.setState({errors});
             return;
         } else {
+            this.setState({
+                currentStep: 4,
+                isSubmit: !this.state.isSubmit
+            });
+
             fetch('/submit-react',{
                 method: "POST",
                 headers: {
@@ -303,21 +308,7 @@ class Form extends React.Component {
             .then(res=>console.log(res.status))
             .then(res=>{return res.json()})
             .then(data => console.log(data))
-            // .then(response => {response.json()})
-            // .then(response=>{ console.log(response.body);});
-            //  .then(response => {
-            //     console.log(response)
-            //     if (response.status === 'success') {
-            //      console.log('form successfully');   
-            //     } else {
-            //         console.log('form not successfull');
-            //     }}
-            //     )
-            
-            this.setState({
-                currentStep: 4,
-                isSubmit: !this.state.isSubmit
-            });
+
         }
     }
 
