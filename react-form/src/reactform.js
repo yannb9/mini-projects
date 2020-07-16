@@ -303,24 +303,18 @@ class Form extends React.Component {
                 currentStep: 4,
                 isSubmit: !this.state.isSubmit
             });
-
-            fetch('/submit-react',{
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(this.state),
+            fetch('/api', {
+                method: 'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify(this.state)
+            }).then(res=>{
+                if(res.ok){
+                    console.log(res.status);
+                    return res.json();
+                }
             })
-            .then(res=>res.json())
-            // .then(res=>console.log(res.status))
-            // .then(res=>{return res.json()})
-            // .then(data => console.log(data))
-
+            .then(res=>console.log(res))
         }
-    }
-
-    componentDidUpdate() {
-        // this.activateStepState();
     }
 
     render() {
