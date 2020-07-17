@@ -5,6 +5,8 @@ class Step1 extends React.Component {
             firstname,
             lastname,
             title,
+            optin,
+            handleCheckbox,
             handleUserInput,
             handleNextBtn,
             errors
@@ -104,7 +106,6 @@ class Step2 extends React.Component {
                         onChange={event => handleUserInput(event)}/>
                 </div>
                 <div className="btns">
-
                     <button className="btn btn-secondary" type="button" onClick={handlePrevBtn}>Prev</button>
                     <button
                         className="btn btn-primary float-right"
@@ -155,14 +156,18 @@ class Step3 extends React.Component {
                         value={phone}
                         onChange={event => handleUserInput(event)}/>
                 </div>
-                <div className="input-box">
+                <div className="input-box checkbox">
+                    <div className="input-container">
                     <input
                         className="form-control optin"
                         id="optin"
                         name="optin"
                         type="checkbox"
                         value={optin}
-                        onChange={handleCheckbox}/>
+                        onChange={event => handleCheckbox(event)}/>
+                        <label for="optin" className="checkbox-label"></label>
+                    </div>
+                        <label className="label-checkbox-txt">I agree to the terms and conditions</label>
                 </div>
                 <div className="btns">
                     <button className="btn btn-secondary" type="button" onClick={handlePrevBtn}>Prev</button>
@@ -330,7 +335,7 @@ class Form extends React.Component {
     }
 
     handleCheckbox = e =>{
-        this.setState({optin: e.target.optin})
+        this.setState({optin: !this.state.optin},()=>{console.log(this.state);})
     }
 
     render() {
@@ -379,6 +384,7 @@ class Form extends React.Component {
                             firstname={firstname}
                             lastname={lastname}
                             title={title}
+                            handleCheckbox={this.handleCheckbox}
                             handleUserInput={this.handleUserInput}
                             handleNextBtn={this.nextBtnHandler}
                             errors={errors}/>

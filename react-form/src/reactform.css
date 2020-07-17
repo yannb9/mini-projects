@@ -156,3 +156,71 @@ button.btn.btn-secondary:focus {
     justify-content: center;
     align-items: center;
 }
+
+.input-box.checkbox{
+    display: flex;
+}
+
+label.label-checkbox-txt {
+    align-self: center;
+    margin-left: 10px;
+}
+
+input.form-control.optin {
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    position: absolute !important;
+    padding-left: 0.92857143em;
+    -webkit-appearance: none;
+    background: #fcfcfc;
+    padding: 0.46428571em;
+    border-radius: 6px;
+    border: 1px solid #ececec;
+    cursor: pointer;
+}
+
+label.checkbox-label {
+    background: none;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    position: relative;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    width: 1.857143em;
+    height: 1.85714286em;
+    border-radius: 6px;
+    font-size: 1em;
+    display: block;
+    cursor: pointer;
+}
+
+label.checkbox-label:before{
+    content: '';
+    left: 0;
+    border-radius: 6px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #4a90e2;
+    opacity: 0;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+}
+
+label.checkbox-label:after{
+    content: 'L';
+    transform: rotateY(180deg) rotateZ(-45deg);
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 4pxpx;
+    font-weight: 700;
+}
+
+input.form-control.optin:checked + label {
+    border-color: #4a90e2;
+    background: #4a90e2;
+}
