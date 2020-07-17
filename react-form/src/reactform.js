@@ -184,21 +184,23 @@ class Step3 extends React.Component {
 
 class SuccessModal extends React.Component {
     render() {
-        const {firstname, lastname, title, country, street, city, email, phone,optin, isSubmit} = this.props;
+        const {firstname, lastname, title, country, street, city, email, phone, optin, isSubmit} = this.props;
         if (!isSubmit) {
             return null
         }
+        let terms = !this.props.optin ? 'Aprroved' : 'Not Approved';
         return (
             <div className="modal-instance">
                 <div className="modal-container">
                     <div className="modal-content--box">
-                        <h3>Success!</h3>
+                        <h2>Success!</h2>
                         <div><p><strong>First Name: </strong>{this.props.firstname}</p></div>
                         <div><p><strong>Last Name: </strong>{this.props.lastname}</p></div>
                         <div><p><strong>Title: </strong>{this.props.country}</p></div>
                         <div><p><strong>Location: </strong>{this.props.street}, {this.props.city} - {this.props.country}</p></div>
                         <div><p><strong>Email: </strong>{this.props.email}</p></div>
                         <div><p><strong>Phone: </strong>{this.props.phone}</p></div>
+                        <div><p><strong>Terms and condition: </strong>{terms}</p></div>
                     </div>
                 </div>
             </div>
